@@ -13,6 +13,6 @@ threshold_grp_id=<kafka ID for the threshold container consumer> (MUST; no defau
 detection_grp_id=<kafka ID for the detection container consumer> (MUST; no default)
 brokers=<kafka server IP:PORT> (MUST; no default)
 timezone=<the user's timezone according to the IANA zime zone database> (MUST; no default)
-training_time=<time the threshold container consumes flows to calculate the DoS threshold in seconds> (OPTIONAL; default: 86400s)
+training_time=<time the threshold container consumes flows to calculate the DoS threshold in seconds> (OPTIONAL; default: 86400)
 threshold_multiplier=<the multiplier that is applied to the max bandwidth calculated during the training time to build a buffer> (OPTIONAL; default: 2)
 ```
