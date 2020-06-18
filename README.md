@@ -16,3 +16,6 @@ timezone=<the user's timezone according to the IANA zime zone database> (MUST; n
 training_time=<time the threshold container consumes flows to calculate the DoS threshold in seconds> (OPTIONAL; default: 86400)
 threshold_multiplier=<the multiplier that is applied to the max bandwidth calculated during the training time to build a buffer> (OPTIONAL; default: 2)
 ```
+# Grafana SSL Credentials
+
+Do not forget to create an priv key and ssl cert
