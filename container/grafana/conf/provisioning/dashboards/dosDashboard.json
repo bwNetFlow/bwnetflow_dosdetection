@@ -1,0 +1,451 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 2,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 23,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(bw)",
+          "intervalFactor": 1,
+          "legendFormat": "Total",
+          "refId": "A"
+        },
+        {
+          "expr": "bw{flow_direction=\"down\"}",
+          "legendFormat": "Downstream",
+          "refId": "B"
+        },
+        {
+          "expr": "bw{flow_direction=\"up\"}",
+          "legendFormat": "Upstream",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Current Peered Throughput",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Throughput (Mbps)",
+          "logBase": 2,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                1
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "10s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "max"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "10s",
+        "handler": 1,
+        "name": "DoS Alert alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "Shows zero if the current bandwidth in the network is lower than the calculated threshold, else the measured throughput.",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 21,
+        "x": 0,
+        "y": 10
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 1,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "detection",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 1
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "DoS Alert",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Throughput (Mpbs)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 12,
+        "w": 23,
+        "x": 0,
+        "y": 18
+      },
+      "id": 4,
+      "options": {
+        "displayMode": "lcd",
+        "fieldOptions": {
+          "calcs": [
+            "max"
+          ],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                }
+              ]
+            }
+          },
+          "overrides": [],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "showUnfilled": false
+      },
+      "pluginVersion": "6.6.1",
+      "targets": [
+        {
+          "expr": "thresholds{hour=\"0\"}",
+          "legendFormat": "00:00 - 00:59 Uhr",
+          "refId": "A"
+        },
+        {
+          "expr": "thresholds{hour=\"1\"}",
+          "legendFormat": "01:00 - 01:59 Uhr",
+          "refId": "B"
+        },
+        {
+          "expr": "thresholds{hour=\"2\"}",
+          "legendFormat": "02:00 - 02:59 Uhr",
+          "refId": "C"
+        },
+        {
+          "expr": "thresholds{hour=\"3\"}",
+          "legendFormat": "03:00 - 03:59 Uhr",
+          "refId": "D"
+        },
+        {
+          "expr": "thresholds{hour=\"4\"}",
+          "legendFormat": "04:00 - 04:59 Uhr",
+          "refId": "E"
+        },
+        {
+          "expr": "thresholds{hour=\"5\"}",
+          "legendFormat": "05:00 - 05:59 Uhr",
+          "refId": "F"
+        },
+        {
+          "expr": "thresholds{hour=\"6\"}",
+          "legendFormat": "06:00 - 06:59 Uhr",
+          "refId": "G"
+        },
+        {
+          "expr": "thresholds{hour=\"7\"}",
+          "legendFormat": "07:00 - 07:59 Uhr",
+          "refId": "H"
+        },
+        {
+          "expr": "thresholds{hour=\"8\"}",
+          "legendFormat": "08:00 - 08:59 Uhr",
+          "refId": "I"
+        },
+        {
+          "expr": "thresholds{hour=\"9\"}",
+          "legendFormat": "09:00 - 09:59 Uhr",
+          "refId": "J"
+        },
+        {
+          "expr": "thresholds{hour=\"10\"}",
+          "legendFormat": "10:00 - 10:59 Uhr",
+          "refId": "K"
+        },
+        {
+          "expr": "thresholds{hour=\"11\"}",
+          "legendFormat": "11:00 - 11:59 Uhr",
+          "refId": "L"
+        },
+        {
+          "expr": "thresholds{hour=\"12\"}",
+          "legendFormat": "12:00 - 12:59 Uhr",
+          "refId": "M"
+        },
+        {
+          "expr": "thresholds{hour=\"13\"}",
+          "legendFormat": "13:00 - 13:59 Uhr",
+          "refId": "N"
+        },
+        {
+          "expr": "thresholds{hour=\"14\"}",
+          "legendFormat": "14:00 - 14:59 Uhr",
+          "refId": "O"
+        },
+        {
+          "expr": "thresholds{hour=\"15\"}",
+          "legendFormat": "15:00 - 15:59 Uhr",
+          "refId": "P"
+        },
+        {
+          "expr": "thresholds{hour=\"16\"}",
+          "legendFormat": "16:00 - 16:59 Uhr",
+          "refId": "Q"
+        },
+        {
+          "expr": "thresholds{hour=\"17\"}",
+          "legendFormat": "17:00 - 17:59 Uhr",
+          "refId": "R"
+        },
+        {
+          "expr": "thresholds{hour=\"18\"}",
+          "legendFormat": "18:00 - 18:59 Uhr",
+          "refId": "S"
+        },
+        {
+          "expr": "thresholds{hour=\"19\"}",
+          "legendFormat": "19:00 - 19:59 Uhr",
+          "refId": "T"
+        },
+        {
+          "expr": "thresholds{hour=\"20\"}",
+          "legendFormat": "20:00 - 20:59 Uhr",
+          "refId": "U"
+        },
+        {
+          "expr": "thresholds{hour=\"21\"}",
+          "legendFormat": "21:00 - 21:59 Uhr",
+          "refId": "V"
+        },
+        {
+          "expr": "thresholds{hour=\"22\"}",
+          "legendFormat": "22:00 - 22:59 Uhr",
+          "refId": "W"
+        },
+        {
+          "expr": "thresholds{hour=\"23\"}",
+          "legendFormat": "23:00 - 23:59 Uhr",
+          "refId": "X"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Calculated Thresholds",
+      "transparent": true,
+      "type": "bargauge"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Volume-based DoS Detection",
+  "uid": "EAS-KAiMk",
+  "version": 4
+}

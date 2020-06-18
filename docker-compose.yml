@@ -1,0 +1,57 @@
+version: "3"
+services:
+  bw:
+    image: "bw:latest"
+    container_name: bw
+    networks:
+      dashboard_network:
+        aliases:
+          - bw.dosdetection.de
+
+  thresholds:
+    image: "thresholds:latest"
+    container_name: thresholds
+    volumes:
+      - ./data/thresholds:/data
+    networks:
+      dashboard_network:
+        aliases:
+          - thresholds.dosdetection.de
+
+  detection:
+    image: "detection:latest"
+    container_name: detection
+    volumes:
+      - ./data/thresholds:/data
+    networks:
+      dashboard_network:
+        aliases:
+          - detection.dosdetection.de
+
+  pserver:
+    image: "pserver:latest"
+    container_name: pserver
+    volumes:
+      - ./data/prometheus:/prometheus
+    networks:
+      dashboard_network:
+        aliases:
+          - prometheus.dosdetection.de
+
+  grafana:
+    image: "grafana/grafana:latest-ubuntu"
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+      - ./container/grafana/ssl:/var/ssl
+      - ./container/grafana/conf/grafana.ini:/etc/grafana/grafana.ini
+      - ./container/grafana/conf/provisioning:/etc/grafana/provisioning
+    networks:
+      dashboard_network:
+        aliases:
+          - grafana.dosdetection.de
+networks:
+  dashboard_network:
+    driver: bridge
