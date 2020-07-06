@@ -33,5 +33,7 @@ The respective container user using the directories in located in ./data must be
 * The *./data/prometheus* directory is used by the container *pserver*. The user running this container needs read, write and execute permissions.
 
 # Grafana SSL Credentials
-
 Do not forget to create an priv key and ssl cert
+
+# Installation
+You can create all necessary images by typing *make all*. NOTE: It needs a valid *./container/general_conf/settings.ini* file for successfully making the images.
