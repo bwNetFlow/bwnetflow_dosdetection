@@ -36,4 +36,14 @@ The respective container user using the directories in located in ./data must be
 Do not forget to create an priv key and ssl cert
 
 # Installation
-You can create all necessary images by typing *make all*. NOTE: It needs a valid *./container/general_conf/settings.ini* file for successfully making the images.
+You can create all necessary images by just typing 
+```
+make all
+```
+NOTE: It needs a valid *./container/general_conf/settings.ini* file for successfully making the images.
+
+# Starting
+After making all images the sample implementation can be started by 
+```
+sudo docker-compose up -d
+```
